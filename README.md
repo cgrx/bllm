@@ -21,3 +21,8 @@ source .venv/bin/activate
 ```bash
 uv sync
 ```
+
+## Index
+| Chapter |                       Title                        |
+|:-------:|:--------------------------------------------------:|
+|    1    | [Understanding Large Language Models](chapter_01/) |

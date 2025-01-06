@@ -22,6 +22,8 @@
 - "Large" because of number of parameters, and amount of data used to train the model.
 - Training task : Predict next word in a sequence.
 - Architecture : Transformer (helps them pay selective attention to different parts of the input during inference).
+- LLMs comes under the domain of Generative AI, or GenAI. There are LLMS that are not GEnAi modles as well as GenAi models that are not LLMS ( Deep Learning models)
+- LLMS are subset of DL, DL is a subset of ML, Ai encomposes all different models and systems with human like intelligence.
 
 ## Applications of LLMs
 - Knowledge retrieval from vast volume of specialized texts.
@@ -37,7 +39,7 @@
 - Two-stage training :
   - Pre-training :
     - Task : Predict next word in a sequence. 
-    - Training a LLM on a large, diverse dataset to develop a broad understanding of language.
+    - Training a LLM on a large, diverse dataset to develop a broad understanding of language. (unlabeled data)
     - The pre-trained model is referred as base or foundational model.
   - Fine-tuning : 
     - LLM is specifically trained on a dataset that is more specific to particular tasks or domains.
@@ -103,8 +105,10 @@
 | Wikipedia    | High-quality text          | 3 billion        | 3%                          |
 - The authors of the GPT-3 paper did not share the training dataset.
   - A comparable dataset that is publicly available is [Dolma: an Open Corpus of Three Trillion Tokens for LLM Pretraining Research](https://arxiv.org/abs/2402.00159).
+  - Books1 is likely a sample from Project Gutenberg, and Books2 is likely from Libgen.
   - Dolma dataset consists of 3 trillion tokens.
   - This dataset might contain copyrighted material.
+  - GPT3 pretraining cost is estimated to be 4.6 million USD.
 
 ## A closer look at the GPT architecture
 - GPT was introduced by OpenAI in the paper [Improving Language Understanding by Generative Pre-Training](http://cdn.openai.com/research-covers/language-unsupervised/language_understanding_paper.pdf).

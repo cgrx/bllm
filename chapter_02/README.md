@@ -1,0 +1,6 @@
+# Working with Text Data
+
+## Index
+|      Resource       |      Description       |
+|:-------------------:|:----------------------:|
+| [Notes](./notes.md) | Notes for the chapter. |

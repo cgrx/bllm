@@ -26,3 +26,4 @@ uv sync
 | Chapter |                       Title                        |
 |:-------:|:--------------------------------------------------:|
 |    1    | [Understanding Large Language Models](chapter_01/) |
+|    2    |       [Working with Text Data](chapter_02/)        |

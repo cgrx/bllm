@@ -22,8 +22,10 @@
 - "Large" because of number of parameters, and amount of data used to train the model.
 - Training task : Predict next word in a sequence.
 - Architecture : Transformer (helps them pay selective attention to different parts of the input during inference).
-- LLMs comes under the domain of Generative AI, or GenAI. There are LLMS that are not GEnAi modles as well as GenAi models that are not LLMS ( Deep Learning models)
-- LLMS are subset of DL, DL is a subset of ML, Ai encomposes all different models and systems with human like intelligence.
+- LLMs and Generative AI (GenAI) :
+  - There are LLMs that are not GenAI models as well as GenAI models that are not LLMs.
+  - LLMs are subset of DL, DL is a subset of ML, ML is a subset of AI.
+  - AI encompasses all models and systems that aspire to display human like intelligence.
 
 ## Applications of LLMs
 - Knowledge retrieval from vast volume of specialized texts.
@@ -38,8 +40,8 @@
   - Equips us with the required knowledge for pretraining or fine-tuning existing open-source LLM architectures.
 - Two-stage training :
   - Pre-training :
-    - Task : Predict next word in a sequence. 
-    - Training a LLM on a large, diverse dataset to develop a broad understanding of language. (unlabeled data)
+    - Task : Predict next word in a sequence (self-supervised - using unlabelled data).
+    - Training a LLM on a large, diverse dataset to develop a broad understanding of language.
     - The pre-trained model is referred as base or foundational model.
   - Fine-tuning : 
     - LLM is specifically trained on a dataset that is more specific to particular tasks or domains.

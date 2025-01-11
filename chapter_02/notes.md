@@ -1,52 +1,27 @@
 # Working with Text Data
 
-## 2.1 Understanding Word Embeddings
-
-### Why Word Embeddings Are Needed
-
-- Deep neural networks, including LLMs, cannot process raw text directly.
-- Text is categorical and incompatible with mathematical operations in neural networks.
-- Words are represented as continuous-valued vectors for neural networks to process.
-- **Embedding**: The process of converting data into a vector format using specific layers or pretrained models.
-
-### Embedding Models for Various Data Formats
-
-- Different embedding models are required for different data types (e.g., text, video, audio).
-- Embedding maps discrete objects (e.g., words, images) to points in a continuous vector space.
-- Embeddings are used to make non-numeric data compatible with neural networks.
-
-### Word Embeddings in Context
-
-- **Word embeddings**: Map individual words to continuous vector representations.
-- **Sentence/paragraph embeddings**: Extend the concept to longer text structures, often used in retrieval-augmented generation.
-- The focus in this chapter is on word embeddings for training GPT-like LLMs.
-
-### Popular Techniques for Word Embeddings
-
-- **Word2Vec**:
-  - Predicts the context of a word given the target word or vice versa.
-  - Based on the idea that words in similar contexts have similar meanings.
-  
-### Dimensionality of Word Embeddings
-
-- Embedding dimensions can range from 1 to thousands:
-  - Higher dimensionality captures nuanced relationships but reduces computational efficiency.
-- Visualization often limits dimensionality to two or three dimensions for interpretability.
-
-### Pretrained vs. Custom Embeddings in LLMs
-
+## Understanding Word Embeddings
+- Why word embeddings?
+  - Words are categorical data, and it isn't compatible with the mathematical operations used in deep learning.
+  - Therefore, we need a way to represent words as continuous-valued vectors.
+- Embedding : Converting data into a continuous-valued vector.
+  - Primary objective is to map discrete data to continuous space.
+  - Audio, image, and video all need embedding to be processed by deep learning models.
+  - Each modality has its own embedding techniques and models.
+  - Even for text data, we have different embedding techniques for words, sentences, and documents.
+- Steps involved :
+  - Splitting text into words.
+  - Converting words into tokens.
+  - Turning tokens into embedding vectors.
+- The model we use for embedding can be learned as a part of pre-training, and their dimension is a design choice.
+  - Larger embeddings can encode more contextual information (important given the huge and diverse dataset).
+  - Smaller embedding are more computer efficient.
+  - Choice of embedding dimension is a trade-off between performance and efficiency.
 - Pretrained models like Word2Vec generate embeddings for machine learning models.
 - LLMs create their own embeddings, optimized during training for specific tasks and data.
-- LLM embeddings are often high-dimensional and contextualized.
-- GPT-2 embedding size: 768 dimensions for smaller models.
-- GPT-3 embedding size: 12,288 dimensions for the largest model.
-
-### Preparing Embeddings for LLMs
-
-- Steps include:
-  1. Splitting text into words.
-  2. Converting words into tokens.
-  3. Turning tokens into embedding vectors.
+  - LLM embeddings are often high-dimensional and contextualized.
+  - GPT-2 embedding size: 768 dimensions for smaller models.
+  - GPT-3 embedding size: 12,288 dimensions for the largest model.
 
 ## Tokenizing text
 - Tokens : An instance of a sequence of characters in some particular document that are grouped together as a useful semantic unit for processing.

@@ -88,18 +88,19 @@ The process was encapsulated in a `SimpleTokenizerV1` class with:
 The tokenizer raises an error for unknown tokens that are not part of the training vocabulary. For example:
 KeyError: 'Hello'
 
-## 2.4 Adding Special Context Tokens
-
-### Enhancements
-To handle unknown words and contextualize independent text sources:
-1. **New Tokens**:
-   - `<|unk|>`: Represents unknown words.
-   - `<|endoftext|>`: Marks boundaries between unrelated text sources.
-2. **Vocabulary Update**: Incorporates the new tokens, increasing the vocabulary size to 1,161.
-
-- **Unknown Words**: Avoids errors by mapping unknown tokens to `<|unk|>`.
-- **Contextual Understanding**: Enhances training by marking boundaries in concatenated text sources.
-- The `SimpleTokenizerV2` class extends the previous tokenizer with Incorporates `<|unk|>` and `<|endoftext|>` into the encoding and decoding process.
+## Adding Special Context Tokens
+- We can add an `<|unk|>` token to deal with Out-Of-Vocabulary (OOV) words.
+- The text documents are concatenated for training. Therefore, we can use `<|endoftext|>` token to separate them.
+- Traditionally, we use other special tokens as well :
+  - `<|startoftext|>` token to indicate the beginning of a text document.
+  - `<|pad|>` token to pad the text to a fixed length.
+- In modern LLMs, we use `<|endoftext|>` token for padding as well.
+  - We use masking to ignore the padding tokens during training.
+  - Therefore, specific token used for padding doesn't matter much.
+- Additionally, modern LLMs don't use `<|unk|>` token.
+  - They use sub-word tokenization techniques.
+  - Sub-word tokenization techniques can handle OOV words better than the `<|unk|>` token.
+  - Example : Byte Pair Encoding (BPE).
 
 ## Byte Pair Encoding
 - Byte Pair Encoding (BPE) is a tokenization technique that :

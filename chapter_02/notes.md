@@ -101,21 +101,24 @@ To handle unknown words and contextualize independent text sources:
 - **Contextual Understanding**: Enhances training by marking boundaries in concatenated text sources.
 - The `SimpleTokenizerV2` class extends the previous tokenizer with Incorporates `<|unk|>` and `<|endoftext|>` into the encoding and decoding process.
 
-## Notes: Byte Pair Encoding (BPE) and Data Sampling
-
-### 2.5 Byte Pair Encoding (BPE)
-- **Introduction to BPE**:
-  - A tokenization technique used to handle unknown words by splitting them into smaller, manageable subword units or individual characters.
-  - Frequently used in large language models like GPT-2, GPT-3, and ChatGPT.
-
-- **Benefits of BPE**:
-  - Reduces the size of the vocabulary by breaking down rare or unknown words into subwords.
-  - Allows the model to generalize better, handling previously unseen words through known subword components.
-
-- **BPE Process**:
-  1. Start with a vocabulary of individual characters.
-  2. Iteratively merge the most frequent pair of characters or subword units into a new subword.
-  3. Continue merging until a predefined vocabulary size is reached or no more merges are possible.
+## Byte Pair Encoding
+- Byte Pair Encoding (BPE) is a tokenization technique that :
+  - Handles unknown words by breaking them down into subword units or individual characters.
+  - It was used in the training of GPT-2, GPT-3, and initial version of ChatGPT.
+- BPE implementation via `tiktoken` library :
+  - The vocabulary size (gpt-2) is 50,257.
+  - `<|endoftext|>` token has the token ID of 50256 (last token ID).
+  - It encodes and decodes unknown words (for example : `someunknownPalace`).
+- How does BPE handle unknown words?
+  - It breaks down the unknown word into sub-words (might even be individual characters) that are in the vocabulary.
+  - In decoding, it combines the sub-words to form the unknown word.
+- How does BPE build the vocabulary ?
+  - Detailed discussion is a bit out-of-scope.
+  - Vocabulary is build by iteratively merging frequent characters into sub-words and frequent sub-words into words.
+    - BPE starts with adding all individual single characters to its vocabulary ("a", "b", ...). 
+    - In the next stage, it merges character combinations that frequently occur together into sub-words.  
+    - The merges are determined by a frequency cutoff.
+  - For example, "d" and "e" may be merged into the sub-word "de".
 
 ## Data sampling with a sliding window
 - Given a large text dataset, we can now tokenize it and convert the tokens into token IDs.

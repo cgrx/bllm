@@ -48,24 +48,19 @@
   2. Converting words into tokens.
   3. Turning tokens into embedding vectors.
 
-## 2.2 Tokenizing Text
-
-### Overview
-
-Tokenizing text is a critical preprocessing step for creating embeddings for large language models (LLMs). This involves splitting input text into tokens, which may be individual words or special characters, such as punctuation.
-
-- **Input Text**: A public domain short story by Edith Wharton, *The Verdict*, was used for demonstration.
-- **Text Source**: Available at [Wikisource](https://en.wikisource.org/wiki/The_Verdict).
-- **Sample Size Considerations**: For educational purposes, a single text sample suffices, but real-world LLM training often involves millions of documents.
-
-### Tokenization with Python
-
-Using Python’s `re` module, we can tokenize text as follows:
-1. **Initial Tokenization**: Split text into words and punctuation using `re.split`.
-2. **Improvement**: Adjust the regular expression to handle a wider variety of special characters, including commas, periods, question marks, and double dashes.
-3. **Whitespace Handling**: Whitespace can be preserved or removed based on application needs. For simplicity, whitespace is removed in this example.
-
-- Using the enhanced regular expression, tokens like:['Hello', ',', 'world', '.', 'This', ',', 'is', 'a', 'test', '.'] are successfully extracted from sample text.
+## Tokenizing text
+- Tokens : An instance of a sequence of characters in some particular document that are grouped together as a useful semantic unit for processing.
+    - Tokenization : Process of splitting text into tokens, and assigning numeric identifier (token IDs) to them.
+    - Token IDs are shared by all the instances of the tokens.
+    - Embedding model maps the token IDs to continuous-valued vectors.
+- Food for thoughts : 
+  - Should we make all text lower case ? Capitalization helps LLMs to :
+    - Distinguish between proper nouns and common nouns.
+    - Understand sentence structure.
+    - Learn to generate text with proper capitalization.
+  - Should we strip white-spaces or have it as a separate token ? 
+    - Keeping whitespaces can be useful if we train models that are sensitive to the exact structure of the text.
+    - Example : Python code sensitive to indentation and spacing.
 
 ## Converting tokens into token IDs
 - Vocabulary : A set of unique tokens in the dataset (is often sorted alphabetically).

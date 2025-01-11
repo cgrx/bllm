@@ -117,7 +117,20 @@ To handle unknown words and contextualize independent text sources:
   2. Iteratively merge the most frequent pair of characters or subword units into a new subword.
   3. Continue merging until a predefined vocabulary size is reached or no more merges are possible.
 
-## 2.6, 2.7 Sections are covered in the code file.
+## Creating token embeddings
+- Next step is to convert each batch of sequences into token embeddings.
+- Token embeddings are continuous-valued vectors that represent the tokens.
+  - The embedding matrix should be initialized with random weight at the start of training.
+  - The embedding dimension `D` is a hyperparameter.
+  - If the vocabulary size is `V`, then the embedding matrix is of size `V x D`.
+- For every token `t` in the sequence :
+  - We look up the token ID in the embedding matrix to get the token embedding.
+  - The token ID corresponds to the row index in the embedding matrix.
+  - We can use matrix multiplication to get the token embeddings efficiently for a batch of sequences.
+- If we have a batch of sequences :
+  - Let `W` be context window size, `B` be batch size, `D` be embedding dimension.
+  - The input tensor is of size `B x W` and the output tensor is of size `B x W x D`.
+- The embedding matrix is learned (due to flow of gradients during back-propagation).
 
 ## Encoding word positions
 - Challenge of position awareness:

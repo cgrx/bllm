@@ -23,7 +23,7 @@
   - GPT-2 embedding size: 768 dimensions for smaller models.
   - GPT-3 embedding size: 12,288 dimensions for the largest model.
 
-## Tokenizing text
+## Tokenizing Text
 - Tokens : An instance of a sequence of characters in some particular document that are grouped together as a useful semantic unit for processing.
     - Tokenization : Process of splitting text into tokens, and assigning numeric identifier (token IDs) to them.
     - Token IDs are shared by all the instances of the tokens.
@@ -37,7 +37,7 @@
     - Keeping whitespaces can be useful if we train models that are sensitive to the exact structure of the text.
     - Example : Python code sensitive to indentation and spacing.
 
-## Converting tokens into token IDs
+## Converting Tokens into Token IDs
 - Vocabulary : A set of unique tokens in the dataset (is often sorted alphabetically).
 - To create a vocabulary, we extract unique tokens from the text data.
 - Next step after creating tokens for text data is to convert them (tokens) into token IDs.
@@ -82,7 +82,7 @@
     - The merges are determined by a frequency cutoff.
   - For example, "d" and "e" may be merged into the sub-word "de".
 
-## Data sampling with a sliding window
+## Data Sampling with a Sliding Window
 - Given a large text dataset, we can now tokenize it and convert the tokens into token IDs.
 - The next step is to generate an input-target pair for training.
 - In our case, we do it in self-supervised manner.
@@ -101,7 +101,7 @@
   - Doesn't skip any part of the dataset.
   - Minimizes overlap as it contributes to overfitting.
 
-## Creating token embeddings
+## Creating Token Embeddings
 - Next step is to convert each batch of sequences into token embeddings.
 - Token embeddings are continuous-valued vectors that represent the tokens.
   - The embedding matrix should be initialized with random weight at the start of training.
@@ -116,7 +116,7 @@
   - The input tensor is of size `B x W` and the output tensor is of size `B x W x D`.
 - The embedding matrix is learned (due to flow of gradients during back-propagation).
 
-## Encoding word positions
+## Encoding Word Positions
 - Challenge of position awareness:
   - Token embeddings are generated based on token IDS.
     - Two tokens with the same ID will have the same embedding, regardless of their position in the sequence.

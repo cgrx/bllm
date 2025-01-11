@@ -117,6 +117,25 @@ To handle unknown words and contextualize independent text sources:
   2. Iteratively merge the most frequent pair of characters or subword units into a new subword.
   3. Continue merging until a predefined vocabulary size is reached or no more merges are possible.
 
+## Data sampling with a sliding window
+- Given a large text dataset, we can now tokenize it and convert the tokens into token IDs.
+- The next step is to generate an input-target pair for training.
+- In our case, we do it in self-supervised manner.
+  - Let the length of the input sequence be `N` (number of tokens).
+  - Let the context window for the model be `W` (max number of tokens in the input per sequence).
+  - Let the stride be `T` (can be $>=1$).
+  - First sequence :
+    - Input : Tokens $\{t_1, ..., t_W\}$
+    - Target : Tokens $\{t_2, ..., t_{W+1}\}$
+  - Second sequence :
+    - Input : Tokens $\{t_{T+1}, ..., t_{T+W+1}\}$
+    - Target : Tokens $\{t_{T+2}, ..., t_{T+W+2}\}$
+  - And so on. Basically, we slide the window by `T` token at a time.
+  - The context window size `W` is the sliding window size.
+- Often the `T` (stride length) is set to `W` (context window size) for the following reasons :
+  - Doesn't skip any part of the dataset.
+  - Minimizes overlap as it contributes to overfitting.
+
 ## Creating token embeddings
 - Next step is to convert each batch of sequences into token embeddings.
 - Token embeddings are continuous-valued vectors that represent the tokens.

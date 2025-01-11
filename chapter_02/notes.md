@@ -119,37 +119,29 @@ To handle unknown words and contextualize independent text sources:
 
 ## 2.6, 2.7 Sections are covered in the code file.
 
-## 2.8 Encoding Word Positions in Large Language Models (LLMs)
-- **Challenge of Position Awareness**:
-  - Token embeddings are generated based on token IDs, but these embeddings are position-agnostic, meaning the same token ID always corresponds to the same vector, regardless of its position in a sequence.
+## Encoding word positions
+- Challenge of position awareness:
+  - Token embeddings are generated based on token IDS.
+    - Two tokens with the same ID will have the same embedding, regardless of their position in the sequence.
+    - This implies that these embeddings are position-agnostic.
   - The self-attention mechanism in LLMs also lacks an inherent understanding of the order or position of tokens.
-
-- **Need for Positional Information**:
-  - To provide position-awareness, two types of positional embeddings are used:
-    1. **Absolute Positional Embeddings**: 
-       - Each token in the sequence is associated with a unique positional embedding.
-       - These embeddings are added to the token embeddings to convey the token's exact position within the sequence.
-    2. **Relative Positional Embeddings**:
-       - Focuses on the relative distance between tokens, rather than their exact positions.
-       - This allows the model to generalize better to sequences of varying lengths.
-
-  - OpenAI's GPT models use **absolute positional embeddings** that are optimized during training.
-  - In contrast to predefined positional encodings in the original Transformer model, GPT models optimize these during the training process.
-
-- **Practical Example with Embedding Layer**:
-  - A token embedding layer is initialized with a vocabulary size and output dimension. For example:
-    - `output_dim = 256` (embedding size)
-    - `vocab_size = 50257` (vocabulary size)
-  - A data loader samples data and each token is embedded into a 256-dimensional vector.
-  
-  - **Embedding Output**:
-    - The token IDs are converted into a tensor with dimensions (batch_size, sequence_length, embedding_dim), for example, an 8x4x256 tensor.
-
-- **Creating Positional Embeddings**:
-  - A separate embedding layer for positional information is created:
-    - `context_length = max_length` (maximum sequence length).
-  - This produces a tensor of positional embeddings, which are then added to the token embeddings.
-  
-- **Combining Token and Positional Embeddings**:
-  - The positional embeddings are added to the token embeddings, resulting in an input embedding tensor that contains both the token information and its positional information.
-  - The final shape of the combined embeddings tensor is also (batch_size, sequence_length, embedding_dim).
+- Need for positional information:
+  - Model needs to understand the order and relationship between tokens to generate coherent and context-aware text.
+  - To make the model position-aware, we can add position embeddings to the token embeddings.
+- Types of position embeddings:
+  - Absolute Position Embedding: 
+    - Each position has a unique embedding and is added to the token embedding.
+    - This favours the model to learn "at which exact position" the token is in the sequence.
+  - Relative Position Embedding:
+    - The relative distance between tokens is encoded in the position embedding.
+    - This favours the model to learn "how far" the tokens are from each other.
+  - The choice of position embedding is application dependent. 
+  - However, relative position embedding is favoured as it can generalize better to unseen sequence lengths.
+- Examples:
+  - The original Transformer model uses predefined positional encodings.
+  - OpenAI's GPT models use Absolute Positional Embeddings that are optimized during training.
+- Mechanics of encoding positional information:
+  - Let context window size be `W`, and embedding dimension be `D`.
+  - Position embedding matrix is of size `W x D`.
+  - To each sequence in a batch of batch size `B`, we add the position embedding.
+  - The output tensor is of size `B x W x D`.

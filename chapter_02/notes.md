@@ -67,26 +67,17 @@ Using Python’s `re` module, we can tokenize text as follows:
 
 - Using the enhanced regular expression, tokens like:['Hello', ',', 'world', '.', 'This', ',', 'is', 'a', 'test', '.'] are successfully extracted from sample text.
 
-
-## 2.3 Converting Tokens into Token IDs
-
-### Vocabulary Creation
-To map tokens to token IDs:
-1. **Build Vocabulary**: Extract unique tokens and assign each a unique integer.
-2. **Vocabulary Size**: For the short story, the vocabulary contains 1,159 unique tokens.
-
-### Mapping Process
-- Tokens are converted to IDs using a mapping dictionary (`vocab`).
-- An inverse dictionary enables conversion of token IDs back to tokens.
-
-### Implementation
-The process was encapsulated in a `SimpleTokenizerV1` class with:
-- **`encode` Method**: Converts text into token IDs.
-- **`decode` Method**: Converts token IDs back into text.
-
-### Limitations
-The tokenizer raises an error for unknown tokens that are not part of the training vocabulary. For example:
-KeyError: 'Hello'
+## Converting tokens into token IDs
+- Vocabulary : A set of unique tokens in the dataset (is often sorted alphabetically).
+- To create a vocabulary, we extract unique tokens from the text data.
+- Next step after creating tokens for text data is to convert them (tokens) into token IDs.
+  - Token IDs are unique numeric identifiers for each token
+  - To do this step we need to develop a vocabulary first.
+  - Process of converting tokens into token IDs is called `numericalization`.
+  - Process of converting token IDs back to tokens is called `denumericalization`.
+  - Hashmaps are used to map tokens to token IDs and vice versa.
+- If the vocabulary doesn't contain a token, and we try to convert it into token ID, we get a `KeyError`.
+- Handling punctuations, whitespaces, special characters and unknown words in the vocabulary is important.
 
 ## Adding Special Context Tokens
 - We can add an `<|unk|>` token to deal with Out-Of-Vocabulary (OOV) words.

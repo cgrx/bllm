@@ -27,3 +27,4 @@ uv sync
 |:-------:|:--------------------------------------------------:|
 |    1    | [Understanding Large Language Models](chapter_01/) |
 |    2    |       [Working with Text Data](chapter_02/)        |
+|         |          [GPT Tokenizer](gpt_tokenizer/)           |
